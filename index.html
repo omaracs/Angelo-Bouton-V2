@@ -229,6 +229,60 @@ footer{background:var(--slate-950);color:#fff;padding-top:4rem;padding-bottom:2r
 .footer-bottom p{color:var(--gray-500);font-size:.875rem}
 .equal-housing{display:flex;align-items:center;gap:.5rem;color:var(--gray-500);font-size:.875rem}
 .footer-fineprint{text-align:center;margin-top:1rem;font-size:.75rem;color:var(--gray-600)}
+
+/* ---------- Legal / TREC Links ---------- */
+.footer-legal{
+  border-top:1px solid var(--slate-800);
+  padding-top:1.75rem;
+  margin-top:1rem;
+  text-align:center;
+}
+
+.footer-legal h4{
+  font-family:"Lato",sans-serif;
+  font-size:.85rem;
+  font-weight:700;
+  color:var(--gray-400);
+  margin-bottom:1rem;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.footer-legal-links{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:center;
+  gap:.75rem 1rem;
+  font-size:.8rem;
+  line-height:1.5;
+  color:var(--gray-500);
+}
+
+.footer-legal-links a{
+  color:var(--gray-400);
+  transition:color .2s ease;
+}
+
+.footer-legal-links a:hover{
+  color:var(--amber-500);
+}
+
+.footer-legal-links span{
+  color:var(--slate-700);
+}
+
+@media (max-width:640px){
+  .footer-legal-links{
+    flex-direction:column;
+    gap:.75rem;
+  }
+
+  .footer-legal-links span{
+    display:none;
+  }
+}
+
 </style>
 </head>
 
@@ -342,11 +396,11 @@ footer{background:var(--slate-950);color:#fff;padding-top:4rem;padding-bottom:2r
       </div>
       <div class="about-copy">
         <p class="eyebrow-plain">Sobre Bouton Real Estate</p>
-        <h2>Más que agentes, somos <span class="accent">su familia</span> en bienes raíces.</h2>
+        <h2>Más que agentes, somos <span class="accent">su Familia</span> en bienes raíces.</h2>
         <p>Con más de 20 años de experiencia, Angelo Bouton ha ayudado a innumerables familias a encontrar su hogar. Nos diferenciamos por ofrecer un servicio personalizado donde actuamos como <strong>Realtor y Oficial de Préstamos</strong> simultáneamente.</p>
         <div class="about-features">
           <div class="about-feature"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><div><h4>Servicio 2 en 1</h4><p>Atención de Realtor y Loan Officer al mismo tiempo. No necesita buscar financiamiento por separado.</p></div></div>
-          <div class="about-feature"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><div><h4>Disponibilidad 24/7</h4><p>Trabajamos sin limitaciones de horario. Atendemos noches, sábados, domingos y festivos.</p></div></div>
+          <div class="about-feature"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><div><h4>Disponibilidad 24/7</h4><p>Trabajamos los 7 días de la semana, incluyendo fines de semana y días festivos, con horarios flexibles para adaptarnos a tus necesidades.</p></div></div>
           <div class="about-feature"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><div><h4>Resultados Rápidos</h4><p>Resultados y aprobaciones para compra de casa a veces en cuestión de minutos.</p></div></div>
           <div class="about-feature"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><div><h4>Trato Familiar</h4><p>Honestidad e integridad. Queremos que se sienta como en familia durante todo el proceso.</p></div></div>
         </div>
@@ -368,15 +422,17 @@ footer{background:var(--slate-950);color:#fff;padding-top:4rem;padding-bottom:2r
         <div class="why-list">
           <div class="why-item">
             <div class="why-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div>
-            <div><h3>Seguridad y Confianza</h3><p>Texas ofrece índices de crimen muy bajos. Priorizamos la seguridad de su inversión y su familia.</p></div>
+            <div><h3>Seguridad y Confianza</h3><p>Texas ofrece bajos índices de criminalidad y es un
+estado con muchas oportunidades. Es un lugar limpio, seguro y con una gran oferta de empleo.</p></div>
           </div>
           <div class="why-item">
             <div class="why-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-            <div><h3>Rapidez en Trámites</h3><p>Gestionamos la venta de su casa actual y la compra de la nueva simultáneamente para que nunca se quede sin hogar.</p></div>
+            <div><h3>Rapidez en Trámites</h3><p>Tramitamos, simplificamos y acompañamos todo el proceso de
+compra y/o venta de su propiedad, de principio a fin.</p></div>
           </div>
           <div class="why-item">
             <div class="why-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/></svg></div>
-            <div><h3>Apoyo a la Comunidad</h3><p>Programas especiales para primeros compradores y asesoría para la comunidad Hispana.</p></div>
+            <div><h3>Apoyo a la Comunidad</h3><p>Programas especiales para primeros compradores y asesoría para la comunidad.</p></div>
           </div>
         </div>
       </div>
@@ -415,7 +471,7 @@ footer{background:var(--slate-950);color:#fff;padding-top:4rem;padding-bottom:2r
   <div class="container">
     <div class="contact-head">
       <h2>Contáctanos</h2>
-      <p>¿Listo para dar el siguiente paso? Estamos disponibles para ayudarle a comprar, vender o financiar su propiedad.</p>
+      <p>¿Listo para dar el siguiente paso? Estamos disponibles para ayudarte a comprar, vender, financiar y refinanciar.</p>
     </div>
 
     <div class="contact-layout">
@@ -436,7 +492,7 @@ footer{background:var(--slate-950);color:#fff;padding-top:4rem;padding-bottom:2r
               <div class="icon-wrap">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
               </div>
-              <div><p class="label">Dirección</p><p class="value">5220 Spring Valley RD, Dallas TX 75252</p></div>
+              <div><p class="label">Dirección</p><p class="value">5220 Spring Valley Rd, Dallas TX 75254</p></div>
             </div>
 
             <div class="contact-item">
@@ -464,7 +520,7 @@ footer{background:var(--slate-950);color:#fff;padding-top:4rem;padding-bottom:2r
           </div>
         </div>
 
-        <p class="contact-quote">&ldquo;Atendemos Sábados, Domingos y Festivos.&rdquo;</p>
+        <p class="contact-quote">&ldquo;También atendemos Sábados, Domingos y Festivos.&rdquo;</p>
       </div>
 
       <!-- Contact form -->
@@ -569,13 +625,37 @@ footer{background:var(--slate-950);color:#fff;padding-top:4rem;padding-bottom:2r
       <div>
         <h4>Contacto</h4>
         <ul>
-          <li>5220 Spring Valley RD, Dallas TX 75252</li>
+          <li>5220 Spring Valley Rd, Dallas TX 75254</li>
           <li><a href="tel:214-766-8878">214-766-8878</a></li>
           <li><a href="mailto:angelobouton@gmail.com" style="word-break:break-word;">angelobouton@gmail.com</a></li>
         </ul>
       </div>
     </div>
+<div class="footer-legal">
+  <h4>Información legal</h4>
 
+  <div class="footer-legal-links">
+
+    <a
+      href="https://raularriaga.com/wp-content/uploads/2022/09/Texas-Real-Estate-Commission-Consumer-Protection-Notice.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Texas Real Estate Commission Consumer Protection Notice
+    </a>
+
+    <span aria-hidden="true">|</span>
+
+    <a
+      href="https://raularriaga.com/wp-content/uploads/2022/09/IABS_TREC.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Texas Real Estate Commission Information About Brokerage Services
+    </a>
+
+  </div>
+</div>
     <div class="footer-bottom">
       <p>© <span id="year"></span> Bouton Real Estate. Todos los derechos reservados.</p>
       <div class="equal-housing">
