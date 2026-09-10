@@ -1,5 +1,6 @@
 {
   "name": "html only: Bouton Real Estate",
-  "description": "Professional Real Estate and Loan Officer services in Dallas, Texas. Expert guidance for buying, selling, and financing homes.",
-  "requestFramePermissions": []
+  "description": "Bouton Real Estate: compra, venta y financiamiento de casas en Texas y Florida. Servicio de Realtor y Oficial de Préstamos en uno, con atención 24/7.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
