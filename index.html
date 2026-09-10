@@ -9,285 +9,226 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
 <style>
-  :root{
-    --amber-300:#fcd34d; --amber-400:#f5b93b; --amber-500:#f99c00; --amber-600:#d97e06;
-    --green-500:#22c55e; --green-600:#16a34a;
-    --slate-50:#f8fafc; --slate-100:#f1f5f9; --slate-600:#475569; --slate-700:#334155;
-    --slate-800:#1e293b; --slate-900:#0f172b; --slate-950:#0a0f1c;
-    --gray-100:#f3f4f6; --gray-200:#e5e7eb; --gray-300:#d1d5db; --gray-400:#9ca3af;
-    --gray-500:#6b7280; --gray-600:#4b5563; --gray-800:#1f2937;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{-webkit-text-size-adjust:100%;}
-  body{
-    font-family:"Lato",sans-serif;
-    color:var(--gray-800);
-    background:#fff;
-    scroll-behavior:smooth;
-    line-height:1.5;
-  }
-  h1,h2,h3,h4,h5,h6{font-family:"Playfair Display",serif;font-weight:700;}
-  img{display:block;max-width:100%;height:auto;}
-  a{color:inherit;text-decoration:none;}
-  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
-  ul{list-style:none;}
-  .container{width:100%;max-width:80rem;margin-inline:auto;padding-inline:1.5rem;}
-  .icon{width:1.5rem;height:1.5rem;flex-shrink:0;}
-  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+:root{
+  --amber-300:#fcd34d;--amber-400:#f5b93b;--amber-500:#f99c00;--amber-600:#d97e06;
+  --green-500:#22c55e;--green-600:#16a34a;
+  --slate-50:#f8fafc;--slate-100:#f1f5f9;--slate-600:#475569;--slate-700:#334155;
+  --slate-800:#1e293b;--slate-900:#0f172b;--slate-950:#0a0f1c;
+  --gray-100:#f3f4f6;--gray-200:#e5e7eb;--gray-300:#d1d5db;--gray-400:#9ca3af;
+  --gray-500:#6b7280;--gray-600:#4b5563;--gray-800:#1f2937;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{font-family:"Lato",sans-serif;color:var(--gray-800);background:#fff;line-height:1.5}
+h1,h2,h3,h4,h5,h6{font-family:"Playfair Display",serif;font-weight:700}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul{list-style:none}
+.container{width:100%;max-width:80rem;margin-inline:auto;padding-inline:1.5rem}
+.icon{width:1.5rem;height:1.5rem;flex-shrink:0}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 
-  /* ---------- Navbar ---------- */
-  .navbar{
-    position:fixed;top:0;left:0;width:100%;z-index:50;
-    padding-block:1.5rem;
-    background:linear-gradient(to bottom, rgba(0,0,0,.6), transparent);
-    transition:all .4s ease-in-out;
-  }
-  .navbar.is-scrolled{
-    padding-block:.75rem;
-    background:rgba(255,255,255,.95);
-    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
-    box-shadow:0 10px 15px -3px rgba(0,0,0,.1);
-  }
-  .nav-row{display:flex;align-items:center;justify-content:space-between;}
-  .brand{
-    font-size:1.125rem;font-weight:700;letter-spacing:-.02em;text-transform:uppercase;
-    color:#fff;text-shadow:0 4px 4px rgba(0,0,0,.15);transition:color .3s;
-  }
-  .navbar.is-scrolled .brand{color:var(--slate-900);text-shadow:none;}
-  .nav-links{display:none;align-items:center;gap:2rem;}
-  .nav-link{
-    font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;
-    color:rgba(255,255,255,.9);text-shadow:0 2px 3px rgba(0,0,0,.15);
-    transition:color .3s;
-  }
-  .navbar.is-scrolled .nav-link{color:var(--slate-800);text-shadow:none;}
-  .nav-link:hover{color:var(--amber-500);}
-  .btn-whatsapp{
-    display:inline-flex;align-items:center;gap:.5rem;
-    padding:.65rem 1.5rem;border-radius:999px;
-    font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.15em;
-    background:#fff;color:var(--slate-900);box-shadow:0 10px 15px -3px rgba(255,255,255,.2);
-    transition:all .3s;
-  }
-  .navbar.is-scrolled .btn-whatsapp{background:var(--green-500);color:#fff;box-shadow:0 10px 15px -3px rgba(34,197,94,.2);}
-  .btn-whatsapp:hover{transform:translateY(-2px);}
-  .navbar.is-scrolled .btn-whatsapp:hover{background:var(--green-600);}
-  .nav-mobile-only{display:flex;align-items:center;gap:1rem;}
-  .whatsapp-round{
-    display:inline-flex;padding:.6rem;border-radius:999px;
-    background:#fff;color:var(--green-500);box-shadow:0 10px 15px -3px rgba(0,0,0,.15);
-  }
-  .navbar.is-scrolled .whatsapp-round{background:var(--green-500);color:#fff;}
-  .menu-toggle .icon{width:2rem;height:2rem;color:#fff;}
-  .navbar.is-scrolled .menu-toggle .icon{color:var(--slate-900);}
-  .icon-x{display:none;}
-  .navbar.menu-open .icon-menu{display:none;}
-  .navbar.menu-open .icon-x{display:block;}
+/* ---------- Navbar ---------- */
+.navbar{position:fixed;top:0;left:0;width:100%;z-index:50;padding-block:1.5rem;background:linear-gradient(to bottom,rgba(0,0,0,.6),transparent);transition:all .4s ease-in-out}
+.navbar.is-scrolled{padding-block:.75rem;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);box-shadow:0 10px 15px -3px rgba(0,0,0,.1)}
+.nav-row{display:flex;align-items:center;justify-content:space-between}
+.brand{font-size:1.125rem;font-weight:700;letter-spacing:-.02em;text-transform:uppercase;color:#fff;text-shadow:0 4px 4px rgba(0,0,0,.15);transition:color .3s}
+.navbar.is-scrolled .brand{color:var(--slate-900);text-shadow:none}
+.nav-links{display:none;align-items:center;gap:2rem}
+.nav-link{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:rgba(255,255,255,.9);text-shadow:0 2px 3px rgba(0,0,0,.15);transition:color .3s}
+.navbar.is-scrolled .nav-link{color:var(--slate-800);text-shadow:none}
+.nav-link:hover{color:var(--amber-500)}
+.btn-whatsapp{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.5rem;border-radius:999px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.15em;background:#fff;color:var(--slate-900);box-shadow:0 10px 15px -3px rgba(255,255,255,.2);transition:all .3s}
+.navbar.is-scrolled .btn-whatsapp{background:var(--green-500);color:#fff;box-shadow:0 10px 15px -3px rgba(34,197,94,.2)}
+.btn-whatsapp:hover{transform:translateY(-2px)}
+.nav-mobile-only{display:flex;align-items:center;gap:1rem}
+.whatsapp-round{display:inline-flex;padding:.6rem;border-radius:999px;background:#fff;color:var(--green-500);box-shadow:0 10px 15px -3px rgba(0,0,0,.15)}
+.navbar.is-scrolled .whatsapp-round{background:var(--green-500);color:#fff}
+.menu-toggle .icon{width:2rem;height:2rem;color:#fff}
+.navbar.is-scrolled .menu-toggle .icon{color:var(--slate-900)}
+.icon-x{display:none}
+.navbar.menu-open .icon-menu{display:none}
+.navbar.menu-open .icon-x{display:block}
+.mobile-menu{max-height:0;opacity:0;overflow:hidden;background:#fff;border-top:1px solid var(--gray-100);box-shadow:0 25px 50px -12px rgba(0,0,0,.25);transition:all .3s ease-in-out}
+.navbar.menu-open .mobile-menu{max-height:80vh;opacity:1;overflow-y:auto}
+.mobile-menu-inner{display:flex;flex-direction:column;padding:2rem;gap:1.5rem;text-align:center}
+.mobile-link{padding-block:.5rem;font-weight:700;color:var(--slate-800);text-transform:uppercase;letter-spacing:.2em;font-size:.85rem;border-bottom:1px solid var(--gray-100)}
+.mobile-link:last-of-type{border-bottom:0}
+.mobile-link:hover{color:var(--amber-600)}
+.mobile-whatsapp{display:flex;justify-content:center;align-items:center;gap:.75rem;padding:1rem 1.5rem;background:var(--green-500);color:#fff;border-radius:.75rem;box-shadow:0 10px 15px -3px rgba(0,0,0,.15);text-transform:uppercase;letter-spacing:.15em;font-size:.75rem;font-weight:700}
+@media (min-width:64rem){.nav-links{display:flex}.nav-mobile-only{display:none}}
 
-  .mobile-menu{
-    max-height:0;opacity:0;overflow:hidden;
-    background:#fff;border-top:1px solid var(--gray-100);
-    box-shadow:0 25px 50px -12px rgba(0,0,0,.25);
-    transition:all .3s ease-in-out;
-  }
-  .navbar.menu-open .mobile-menu{max-height:80vh;opacity:1;overflow-y:auto;}
-  .mobile-menu-inner{display:flex;flex-direction:column;padding:2rem;gap:1.5rem;text-align:center;}
-  .mobile-link{
-    padding-block:.5rem;font-weight:700;color:var(--slate-800);
-    text-transform:uppercase;letter-spacing:.2em;font-size:.85rem;
-    border-bottom:1px solid var(--gray-100);
-  }
-  .mobile-link:last-of-type{border-bottom:0;}
-  .mobile-link:hover{color:var(--amber-600);}
-  .mobile-whatsapp{
-    display:flex;justify-content:center;align-items:center;gap:.75rem;
-    padding:1rem 1.5rem;background:var(--green-500);color:#fff;
-    border-radius:.75rem;box-shadow:0 10px 15px -3px rgba(0,0,0,.15);
-    text-transform:uppercase;letter-spacing:.15em;font-size:.75rem;font-weight:700;
-  }
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:600px;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#fff}
+.hero-logo{position:absolute;top:5.5rem;left:1.25rem;z-index:15;width:5.5rem;border-radius:.75rem;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,.4);border:1px solid rgba(249,156,0,.35)}
+.hero-logo img{width:100%;height:100%;display:block}
+@media (min-width:40rem){.hero-logo{top:6.5rem;left:1.5rem;width:6.5rem}}
+@media (min-width:64rem){.hero-logo{top:7.5rem;left:2rem;width:7.5rem}}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero-bg::after{content:"";position:absolute;inset:0;background:rgba(15,23,43,.6);mix-blend-mode:multiply}
+.hero-content{position:relative;z-index:10;text-align:center;padding-inline:1.5rem;max-width:64rem}
+.eyebrow{display:inline-block;padding:.35rem .9rem;border-radius:999px;margin-bottom:1.5rem;background:rgba(249,156,0,.2);border:1px solid var(--amber-400);color:var(--amber-300);font-size:.85rem;font-weight:600;letter-spacing:.05em;backdrop-filter:blur(4px)}
+.hero h1{font-size:2.25rem;line-height:1.2;margin-bottom:1.5rem;text-shadow:0 4px 4px rgba(0,0,0,.15)}
+.hero h1 .accent{color:var(--amber-400)}
+.hero p{font-size:1.125rem;color:var(--gray-300);max-width:42rem;margin:0 auto 2.5rem;font-weight:300;line-height:1.6}
+.btn-cta{display:inline-flex;padding:1rem 2rem;border-radius:.5rem;background:var(--amber-500);color:#fff;font-weight:700;box-shadow:0 10px 15px -3px rgba(0,0,0,.1);transition:transform .2s,background .2s}
+.btn-cta:hover{background:var(--amber-600);transform:scale(1.05)}
+.scroll-cue{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);animation:bounce 1.4s infinite}
+@keyframes bounce{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-20%)}}
+@media (min-width:48rem){.hero h1{font-size:3.75rem}}
+@media (min-width:64rem){.hero h1{font-size:4.5rem}}
 
-  @media (min-width:64rem){
-    .nav-links{display:flex;}
-    .nav-mobile-only{display:none;}
-  }
+/* ---------- Shared ---------- */
+section{padding-block:5rem}
+.section-head{text-align:center;max-width:48rem;margin:0 auto 4rem}
+.section-head h2{font-size:1.875rem;color:var(--slate-900);margin-bottom:1rem}
+.section-head .rule{width:5rem;height:.25rem;background:var(--amber-500);margin:0 auto 1.5rem;border-radius:2px}
+.section-head p{color:var(--gray-600);font-size:1.125rem}
+@media (min-width:48rem){.section-head h2{font-size:2.25rem}}
 
-  /* ---------- Hero ---------- */
-  .hero{position:relative;min-height:600px;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#fff;}
-  .hero-logo{
-    position:absolute;top:5.5rem;left:1.25rem;z-index:15;
-    width:5.5rem;border-radius:.75rem;overflow:hidden;
-    box-shadow:0 10px 25px rgba(0,0,0,.4);
-    border:1px solid rgba(249,156,0,.35);
-  }
-  .hero-logo img{width:100%;height:100%;display:block;}
-  @media (min-width:40rem){.hero-logo{top:6.5rem;left:1.5rem;width:6.5rem;}}
-  @media (min-width:64rem){.hero-logo{top:7.5rem;left:2rem;width:7.5rem;}}
-  .hero-bg{position:absolute;inset:0;z-index:0;}
-  .hero-bg img{width:100%;height:100%;object-fit:cover;}
-  .hero-bg::after{content:"";position:absolute;inset:0;background:rgba(15,23,43,.6);mix-blend-mode:multiply;}
-  .hero-content{position:relative;z-index:10;text-align:center;padding-inline:1.5rem;max-width:64rem;}
-  .eyebrow{
-    display:inline-block;padding:.35rem .9rem;border-radius:999px;margin-bottom:1.5rem;
-    background:rgba(249,156,0,.2);border:1px solid var(--amber-400);color:var(--amber-300);
-    font-size:.85rem;font-weight:600;letter-spacing:.05em;
-    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
-  }
-  .hero h1{font-size:2.25rem;line-height:1.2;margin-bottom:1.5rem;text-shadow:0 4px 4px rgba(0,0,0,.15);}
-  .hero h1 .accent{color:var(--amber-400);}
-  .hero p{font-size:1.125rem;color:var(--gray-300);max-width:42rem;margin:0 auto 2.5rem;font-weight:300;line-height:1.6;}
-  .btn-cta{
-    display:inline-flex;padding:1rem 2rem;border-radius:.5rem;
-    background:var(--amber-500);color:#fff;font-weight:700;
-    box-shadow:0 10px 15px -3px rgba(0,0,0,.1);
-    transition:transform .2s,background .2s;
-  }
-  .btn-cta:hover{background:var(--amber-600);transform:scale(1.05);}
-  .scroll-cue{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);animation:bounce 1.4s infinite;}
-  @keyframes bounce{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,-20%);}}
-  @media (min-width:48rem){.hero h1{font-size:3.75rem;}}
-  @media (min-width:64rem){.hero h1{font-size:4.5rem;}}
+/* ---------- Services ---------- */
+.services{background:var(--slate-50)}
+.services-grid{display:grid;grid-template-columns:1fr;gap:2rem}
+@media (min-width:48rem){.services-grid{grid-template-columns:1fr 1fr}}
+@media (min-width:64rem){.services-grid{grid-template-columns:repeat(4,1fr)}}
+.service-card{background:#fff;padding:2rem;border-radius:.75rem;border:1px solid var(--gray-100);box-shadow:0 1px 3px rgba(0,0,0,.1);transition:box-shadow .3s}
+.service-card:hover{box-shadow:0 20px 25px -5px rgba(0,0,0,.1)}
+.service-icon{width:4rem;height:4rem;border-radius:999px;background:var(--slate-100);color:var(--slate-700);display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;transition:background .3s,color .3s}
+.service-card:hover .service-icon{background:var(--amber-500);color:#fff}
+.service-card h3{font-size:1.25rem;color:var(--slate-900);margin-bottom:.75rem}
+.service-card p{color:var(--gray-600);line-height:1.6}
 
-  /* ---------- Section shared ---------- */
-  section{padding-block:5rem;}
-  .section-head{text-align:center;max-width:48rem;margin:0 auto 4rem;}
-  .section-head h2{font-size:1.875rem;color:var(--slate-900);margin-bottom:1rem;}
-  .section-head .rule{width:5rem;height:.25rem;background:var(--amber-500);margin:0 auto 1.5rem;border-radius:2px;}
-  .section-head p{color:var(--gray-600);font-size:1.125rem;}
-  @media (min-width:48rem){.section-head h2{font-size:2.25rem;}}
+/* ---------- About ---------- */
+.about-inner{display:flex;flex-direction:column;align-items:center;gap:4rem}
+@media (min-width:64rem){.about-inner{flex-direction:row}}
+.about-media{width:100%;position:relative}
+@media (min-width:64rem){.about-media{width:50%}}
+.about-media .backdrop{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(249,156,0,.1);border-radius:1rem;transform:translate(-1rem,1rem)}
+.about-media img{position:relative;border-radius:1rem;box-shadow:0 25px 50px -12px rgba(0,0,0,.25);width:100%;height:500px;object-fit:cover}
+.mission-card{position:absolute;bottom:-1.5rem;right:-1.5rem;max-width:20rem;background:#fff;padding:1.5rem;border-radius:.5rem;border-left:4px solid var(--amber-500);box-shadow:0 20px 25px -5px rgba(0,0,0,.1);display:none}
+@media (min-width:40rem){.mission-card{display:block}}
+@media (min-width:48rem){.mission-card{right:-1.25rem;bottom:2rem}}
+.mission-card p:first-child{font-weight:700;color:var(--slate-900);font-size:1.125rem}
+.mission-card p:last-child{color:var(--slate-600);font-size:.875rem;margin-top:.5rem}
+.about-copy{width:100%}
+@media (min-width:64rem){.about-copy{width:50%}}
+.about-copy .eyebrow-plain{color:var(--amber-600);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem;font-size:.85rem}
+.about-copy h2{font-size:1.875rem;color:var(--slate-900);margin-bottom:1.5rem;line-height:1.25}
+.about-copy h2 .accent{color:var(--amber-500)}
+@media (min-width:48rem){.about-copy h2{font-size:3rem}}
+.about-copy>p{color:var(--gray-600);margin-bottom:2rem;font-size:1.125rem;line-height:1.6}
+.about-features{display:grid;gap:1rem}
+.about-feature{display:flex;align-items:flex-start}
+.about-feature .icon{color:var(--amber-500);margin-top:.25rem;margin-right:1rem}
+.about-feature h4{font-family:"Lato",sans-serif;font-weight:700;color:var(--slate-900)}
+.about-feature p{color:var(--gray-500);font-size:.875rem}
 
-  /* ---------- Services ---------- */
-  .services{background:var(--slate-50);}
-  .services-grid{display:grid;grid-template-columns:1fr;gap:2rem;}
-  @media (min-width:48rem){.services-grid{grid-template-columns:1fr 1fr;}}
-  @media (min-width:64rem){.services-grid{grid-template-columns:repeat(4,1fr);}}
-  .service-card{
-    background:#fff;padding:2rem;border-radius:.75rem;border:1px solid var(--gray-100);
-    box-shadow:0 1px 3px rgba(0,0,0,.1);transition:box-shadow .3s;
-  }
-  .service-card:hover{box-shadow:0 20px 25px -5px rgba(0,0,0,.1);}
-  .service-icon{
-    width:4rem;height:4rem;border-radius:999px;background:var(--slate-100);color:var(--slate-700);
-    display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;
-    transition:background .3s,color .3s;
-  }
-  .service-card:hover .service-icon{background:var(--amber-500);color:#fff;}
-  .service-card h3{font-size:1.25rem;color:var(--slate-900);margin-bottom:.75rem;}
-  .service-card p{color:var(--gray-600);line-height:1.6;}
+/* ---------- Features ---------- */
+.features{position:relative;background:var(--slate-900);color:#fff}
+.features-bg{position:absolute;inset:0;overflow:hidden;opacity:.1;pointer-events:none}
+.features-bg img{width:100%;height:100%;object-fit:cover}
+.features-inner{position:relative;z-index:10;display:grid;gap:3rem}
+@media (min-width:64rem){.features-inner{grid-template-columns:1fr 1fr;align-items:center}}
+.features h2{font-size:1.875rem;margin-bottom:1.5rem}
+@media (min-width:48rem){.features h2{font-size:2.25rem}}
+.features>.features-inner>div:first-child>p{color:var(--gray-300);margin-bottom:2rem;font-size:1.125rem}
+.why-list{display:grid;gap:1.5rem}
+.why-item{display:flex;gap:1rem}
+.why-icon{width:3rem;height:3rem;border-radius:.5rem;background:var(--amber-500);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.why-icon .icon{color:#fff}
+.why-item h3{font-family:"Lato",sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:.25rem}
+.why-item p{color:var(--gray-400);font-size:.875rem}
+.testimonial-card{background:#fff;color:var(--slate-900);padding:2rem;border-radius:1rem;box-shadow:0 25px 50px -12px rgba(0,0,0,.25)}
+.testimonial-card h3{font-size:1.5rem;text-align:center;margin-bottom:1.5rem}
+.testimonial{border-bottom:1px solid var(--gray-100);padding-bottom:1rem;margin-bottom:1.5rem}
+.testimonial:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.stars{display:flex;color:var(--amber-500);gap:.15rem;margin-bottom:.5rem}
+.stars .icon{width:1rem;height:1rem}
+.testimonial p.quote{font-style:italic;color:var(--gray-600);margin-bottom:.5rem}
+.testimonial p.author{font-weight:700;font-size:.875rem}
 
-  /* ---------- About ---------- */
-  .about-inner{display:flex;flex-direction:column;align-items:center;gap:4rem;}
-  @media (min-width:64rem){.about-inner{flex-direction:row;}}
-  .about-media{width:100%;position:relative;}
-  @media (min-width:64rem){.about-media{width:50%;}}
-  .about-media .backdrop{
-    position:absolute;top:0;left:0;width:100%;height:100%;
-    background:rgba(249,156,0,.1);border-radius:1rem;
-    transform:translate(-1rem,1rem);
-  }
-  .about-media img{position:relative;border-radius:1rem;box-shadow:0 25px 50px -12px rgba(0,0,0,.25);width:100%;height:500px;object-fit:cover;}
-  .mission-card{
-    position:absolute;bottom:-1.5rem;right:-1.5rem;max-width:20rem;
-    background:#fff;padding:1.5rem;border-radius:.5rem;border-left:4px solid var(--amber-500);
-    box-shadow:0 20px 25px -5px rgba(0,0,0,.1);display:none;
-  }
-  @media (min-width:40rem){.mission-card{display:block;}}
-  @media (min-width:48rem){.mission-card{right:-1.25rem;bottom:2rem;}}
-  .mission-card p:first-child{font-weight:700;color:var(--slate-900);font-size:1.125rem;}
-  .mission-card p:last-child{color:var(--slate-600);font-size:.875rem;margin-top:.5rem;}
-  .about-copy{width:100%;}
-  @media (min-width:64rem){.about-copy{width:50%;}}
-  .about-copy .eyebrow-plain{color:var(--amber-600);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem;font-size:.85rem;font-family:"Lato",sans-serif;}
-  .about-copy h2{font-size:1.875rem;color:var(--slate-900);margin-bottom:1.5rem;line-height:1.25;}
-  .about-copy h2 .accent{color:var(--amber-500);}
-  @media (min-width:48rem){.about-copy h2{font-size:3rem;}}
-  .about-copy > p{color:var(--gray-600);margin-bottom:2rem;font-size:1.125rem;line-height:1.6;}
-  .about-features{display:grid;gap:1rem;}
-  .about-feature{display:flex;align-items:flex-start;}
-  .about-feature .icon{color:var(--amber-500);margin-top:.25rem;margin-right:1rem;}
-  .about-feature h4{font-family:"Lato",sans-serif;font-weight:700;color:var(--slate-900);}
-  .about-feature p{color:var(--gray-500);font-size:.875rem;}
+/* ---------- Contact ---------- */
+.contact{background:var(--slate-50)}
+.contact-head{text-align:center;margin-bottom:4rem}
+.contact-head h2{font-size:1.875rem;color:var(--slate-900);margin-bottom:1rem}
+@media (min-width:48rem){.contact-head h2{font-size:3rem}}
+.contact-head p{color:var(--gray-600);max-width:42rem;margin:0 auto;font-size:1.125rem}
 
-  /* ---------- Features / why-us ---------- */
-  .features{position:relative;background:var(--slate-900);color:#fff;}
-  .features-bg{position:absolute;inset:0;overflow:hidden;opacity:.1;pointer-events:none;}
-  .features-bg img{width:100%;height:100%;object-fit:cover;}
-  .features-inner{position:relative;z-index:10;display:grid;gap:3rem;}
-  @media (min-width:64rem){.features-inner{grid-template-columns:1fr 1fr;align-items:center;}}
-  .features h2{font-size:1.875rem;margin-bottom:1.5rem;}
-  @media (min-width:48rem){.features h2{font-size:2.25rem;}}
-  .features > .features-inner > div:first-child > p{color:var(--gray-300);margin-bottom:2rem;font-size:1.125rem;}
-  .why-list{display:grid;gap:1.5rem;}
-  .why-item{display:flex;gap:1rem;}
-  .why-icon{
-    width:3rem;height:3rem;border-radius:.5rem;background:var(--amber-500);
-    display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  }
-  .why-icon .icon{color:#fff;}
-  .why-item h3{font-family:"Lato",sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:.25rem;}
-  .why-item p{color:var(--gray-400);font-size:.875rem;}
-  .testimonial-card{background:#fff;color:var(--slate-900);padding:2rem;border-radius:1rem;box-shadow:0 25px 50px -12px rgba(0,0,0,.25);}
-  .testimonial-card h3{font-size:1.5rem;text-align:center;margin-bottom:1.5rem;}
-  .testimonial{border-bottom:1px solid var(--gray-100);padding-bottom:1rem;margin-bottom:1.5rem;}
-  .testimonial:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0;}
-  .stars{display:flex;color:var(--amber-500);gap:.15rem;margin-bottom:.5rem;}
-  .stars .icon{width:1rem;height:1rem;}
-  .testimonial p.quote{font-style:italic;color:var(--gray-600);margin-bottom:.5rem;}
-  .testimonial p.author{font-weight:700;font-size:.875rem;}
+.contact-layout{display:grid;grid-template-columns:1fr;gap:2rem;align-items:stretch}
+@media (min-width:64rem){.contact-layout{grid-template-columns:1fr 1fr;align-items:stretch}}
 
-  /* ---------- Contact ---------- */
-  .contact{background:var(--slate-50);}
-  .contact-head{text-align:center;margin-bottom:4rem;}
-  .contact-head h2{font-size:1.875rem;color:var(--slate-900);margin-bottom:1rem;}
-  @media (min-width:48rem){.contact-head h2{font-size:3rem;}}
-  .contact-head p{color:var(--gray-600);max-width:42rem;margin:0 auto;font-size:1.125rem;}
-  .contact-card-wrap{display:flex;justify-content:center;}
-  .contact-card{
-    width:100%;max-width:48rem;background:var(--slate-900);color:#fff;
-    border-radius:1.5rem;box-shadow:0 25px 50px -12px rgba(0,0,0,.25);
-    padding:2.5rem 1.75rem;position:relative;overflow:hidden;
-  }
-  @media (min-width:48rem){.contact-card{padding:4rem;}}
-  .contact-blob{position:absolute;width:8rem;height:8rem;background:rgba(249,156,0,.1);}
-  .contact-blob.tr{top:0;right:0;border-radius:0 0 0 999px;}
-  .contact-blob.bl{bottom:0;left:0;border-radius:0 999px 0 0;}
-  .contact-card-head{text-align:center;margin-bottom:2.5rem;}
-  .contact-card-head h3{font-size:1.875rem;color:var(--amber-500);margin-bottom:.5rem;}
-  .contact-card-head p{color:var(--gray-400);}
-  .contact-grid{position:relative;z-index:10;display:grid;gap:2.5rem;}
-  @media (min-width:48rem){.contact-grid{grid-template-columns:1fr 1fr;}}
-  .contact-col{display:grid;gap:2rem;}
-  .contact-item{display:flex;align-items:flex-start;gap:1.25rem;}
-  .contact-item .icon-wrap{padding:.75rem;background:rgba(255,255,255,.05);border-radius:.5rem;}
-  .contact-item .icon-wrap .icon{color:var(--amber-500);}
-  .contact-item .label{font-weight:700;font-size:.8rem;color:var(--gray-400);text-transform:uppercase;margin-bottom:.25rem;}
-  .contact-item .value{font-size:1.125rem;}
-  .contact-item a.value:hover{color:var(--amber-400);}
-  .contact-quote{margin-top:3rem;text-align:center;padding-top:2rem;border-top:1px solid var(--gray-800);color:var(--gray-400);font-style:italic;position:relative;z-index:10;}
+.contact-card,.contact-form-card{
+  width:100%;background:var(--slate-900);color:#fff;border-radius:1.5rem;
+  box-shadow:0 25px 50px -12px rgba(0,0,0,.25);padding:2.5rem 1.75rem;
+  position:relative;overflow:hidden;
+}
+@media (min-width:48rem){.contact-card,.contact-form-card{padding:4rem}}
 
-  /* ---------- Footer ---------- */
-  footer{background:var(--slate-950);color:#fff;padding-top:4rem;padding-bottom:2rem;}
-  .footer-grid{display:grid;grid-template-columns:1fr;gap:3rem;margin-bottom:3rem;}
-  @media (min-width:48rem){.footer-grid{grid-template-columns:1fr 1fr;}}
-  @media (min-width:64rem){.footer-grid{grid-template-columns:repeat(4,1fr);}}
-  .footer-logo{height:8rem;width:auto;border-radius:.5rem;background:rgba(255,255,255,.05);padding:.25rem;margin-bottom:1.5rem;}
-  .footer-grid p{color:var(--gray-400);margin-bottom:1.5rem;}
-  .social-row{display:flex;gap:1rem;}
-  .social-row a{color:var(--gray-400);}
-  .social-row a:hover{color:var(--amber-500);}
-  .footer-grid h4{font-family:"Lato",sans-serif;font-size:1.125rem;font-weight:700;color:var(--amber-500);margin-bottom:1.5rem;}
-  .footer-grid ul{display:grid;gap:.75rem;color:var(--gray-400);}
-  .footer-grid ul a:hover{color:#fff;}
-  .footer-bottom{
-    border-top:1px solid var(--slate-800);padding-top:2rem;margin-top:2rem;
-    display:flex;flex-direction:column;justify-content:space-between;align-items:center;gap:1rem;
-  }
-  @media (min-width:48rem){.footer-bottom{flex-direction:row;}}
-  .footer-bottom p{color:var(--gray-500);font-size:.875rem;}
-  .equal-housing{display:flex;align-items:center;gap:.5rem;color:var(--gray-500);font-size:.875rem;}
-  .footer-fineprint{text-align:center;margin-top:1rem;font-size:.75rem;color:var(--gray-600);}
+.contact-blob{position:absolute;width:8rem;height:8rem;background:rgba(249,156,0,.1)}
+.contact-blob.tr{top:0;right:0;border-radius:0 0 0 999px}
+.contact-blob.bl{bottom:0;left:0;border-radius:0 999px 0 0}
+.contact-card-head{text-align:center;margin-bottom:2.5rem;position:relative;z-index:10}
+.contact-card-head h3,.contact-form-head h3{font-size:1.875rem;color:var(--amber-500);margin-bottom:.5rem}
+.contact-card-head p,.contact-form-head p{color:var(--gray-400)}
+.contact-grid{position:relative;z-index:10;display:grid;gap:2.5rem}
+@media (min-width:48rem){.contact-grid{grid-template-columns:1fr 1fr}}
+.contact-col{display:grid;gap:2rem}
+.contact-item{display:flex;align-items:flex-start;gap:1.25rem}
+.contact-item .icon-wrap{padding:.75rem;background:rgba(255,255,255,.05);border-radius:.5rem}
+.contact-item .icon-wrap .icon{color:var(--amber-500)}
+.contact-item .label{font-weight:700;font-size:.8rem;color:var(--gray-400);text-transform:uppercase;margin-bottom:.25rem}
+.contact-item .value{font-size:1.125rem}
+.contact-item a.value:hover{color:var(--amber-400)}
+.contact-quote{margin-top:3rem;text-align:center;padding-top:2rem;border-top:1px solid var(--gray-800);color:var(--gray-400);font-style:italic;position:relative;z-index:10}
+
+/* ---------- Contact Form ---------- */
+.contact-form-card{display:flex;flex-direction:column}
+.contact-form-head{position:relative;z-index:2;text-align:center;margin-bottom:2rem}
+.contact-form{position:relative;z-index:2}
+.form-field{margin-bottom:1.25rem}
+.form-field label{display:block;font-size:.8rem;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.5rem}
+.form-field input{width:100%;padding:.9rem 1rem;border:1px solid var(--gray-600);border-radius:.5rem;background:rgba(255,255,255,.06);color:#fff;font-family:"Lato",sans-serif;font-size:1rem;outline:none;transition:border-color .2s,background .2s,box-shadow .2s}
+.form-field input::placeholder{color:var(--gray-500)}
+.form-field input:focus{border-color:var(--amber-500);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(249,156,0,.12)}
+.form-consent{display:flex;align-items:flex-start;gap:.75rem;margin:1.5rem 0}
+.form-consent input[type="checkbox"]{appearance:none;-webkit-appearance:none;width:1.2rem;height:1.2rem;min-width:1.2rem;margin-top:.15rem;border:1px solid var(--gray-500);border-radius:.25rem;background:rgba(255,255,255,.05);cursor:pointer;position:relative}
+.form-consent input[type="checkbox"]:checked{background:var(--amber-500);border-color:var(--amber-500)}
+.form-consent input[type="checkbox"]:checked::after{content:"✓";position:absolute;left:50%;top:50%;transform:translate(-50%,-52%);color:#fff;font-size:.8rem;font-weight:700}
+.form-consent label{color:var(--gray-400);font-size:.72rem;line-height:1.5;cursor:pointer}
+.form-submit{width:100%;padding:1rem 1.5rem;border-radius:.5rem;background:var(--amber-500);color:#fff;font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:.08em;transition:all .2s}
+.form-submit:not(:disabled):hover{background:var(--amber-600);transform:translateY(-2px)}
+.form-submit:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.form-result{display:none;position:relative;z-index:2;margin-top:1rem;padding:.9rem 1rem;border-radius:.5rem;text-align:center;font-size:.9rem}
+.form-result.success{display:block;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);color:#86efac}
+.form-result.error{display:block;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:#fca5a5}
+.contact-form-card::before{content:"";position:absolute;width:8rem;height:8rem;top:0;right:0;background:rgba(249,156,0,.1);border-radius:0 0 0 999px;pointer-events:none}
+.contact-form-card::after{content:"";position:absolute;width:8rem;height:8rem;bottom:0;left:0;background:rgba(249,156,0,.1);border-radius:0 999px 0 0;pointer-events:none}
+
+/* ---------- Footer ---------- */
+footer{background:var(--slate-950);color:#fff;padding-top:4rem;padding-bottom:2rem}
+.footer-grid{display:grid;grid-template-columns:1fr;gap:3rem;margin-bottom:3rem}
+@media (min-width:48rem){.footer-grid{grid-template-columns:1fr 1fr}}
+@media (min-width:64rem){.footer-grid{grid-template-columns:repeat(4,1fr)}}
+.footer-logo{height:8rem;width:auto;border-radius:.5rem;background:rgba(255,255,255,.05);padding:.25rem;margin-bottom:1.5rem}
+.footer-grid p{color:var(--gray-400);margin-bottom:1.5rem}
+.social-row{display:flex;gap:1rem}
+.social-row a{color:var(--gray-400)}
+.social-row a:hover{color:var(--amber-500)}
+.footer-grid h4{font-family:"Lato",sans-serif;font-size:1.125rem;font-weight:700;color:var(--amber-500);margin-bottom:1.5rem}
+.footer-grid ul{display:grid;gap:.75rem;color:var(--gray-400)}
+.footer-grid ul a:hover{color:#fff}
+.footer-bottom{border-top:1px solid var(--slate-800);padding-top:2rem;margin-top:2rem;display:flex;flex-direction:column;justify-content:space-between;align-items:center;gap:1rem}
+@media (min-width:48rem){.footer-bottom{flex-direction:row}}
+.footer-bottom p{color:var(--gray-500);font-size:.875rem}
+.equal-housing{display:flex;align-items:center;gap:.5rem;color:var(--gray-500);font-size:.875rem}
+.footer-fineprint{text-align:center;margin-top:1rem;font-size:.75rem;color:var(--gray-600)}
 </style>
 </head>
+
 <body>
 
 <!-- ================= NAVBAR ================= -->
@@ -295,7 +236,6 @@
   <div class="container">
     <div class="nav-row">
       <a href="#home" class="brand">Bouton Real Estate</a>
-
       <div class="nav-links">
         <a href="#home" class="nav-link">Inicio</a>
         <a href="#services" class="nav-link">Servicios</a>
@@ -307,7 +247,6 @@
           WhatsApp
         </a>
       </div>
-
       <div class="nav-mobile-only">
         <a href="https://wa.me/12147668878" target="_blank" rel="noopener noreferrer" class="whatsapp-round" aria-label="WhatsApp">
           <svg class="icon" style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
@@ -319,7 +258,6 @@
       </div>
     </div>
   </div>
-
   <div class="mobile-menu">
     <div class="mobile-menu-inner">
       <a href="#home" class="mobile-link">Inicio</a>
@@ -338,7 +276,7 @@
 <!-- ================= HERO ================= -->
 <section class="hero" id="home" style="padding-block:0;">
   <div class="hero-logo">
-    <img src="data:image/webp;base64,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" alt="Bouton Real Estate - Your home is your castle" />
+    <img src="https://lh3.googleusercontent.com/pw/AP1GczOezET3OkAjNAVlvgdtaPfEtKaxo6vGN9CjU4DbOJtVUOjbPD3TGHMa76zuJvHvRwzruqn4kpOpJA9wrovNc-DslpXK5i0bNQ9mCGSMtRrDsPYuNFDtRl3HsKdzN1gjY-SeIvJkhEH1fbOO8m9Yw5xe7Q=w917-h917-s-no-gm?authuser=0" alt="Bouton Real Estate" />
   </div>
   <div class="hero-bg">
     <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Casa de lujo" loading="eager" />
@@ -362,36 +300,24 @@
       <div class="rule"></div>
       <p>Soluciones integrales para todas sus necesidades inmobiliarias. Desde la búsqueda de su hogar ideal hasta el financiamiento y cierre.</p>
     </div>
-
     <div class="services-grid">
       <div class="service-card">
-        <div class="service-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
+        <div class="service-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
         <h3>Compra y Venta</h3>
         <p>Asesoría total en la compra y venta de casas y negocios. Guiamos todo el proceso de la mano.</p>
       </div>
-
       <div class="service-card">
-        <div class="service-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
-        </div>
+        <div class="service-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg></div>
         <h3>Financiamiento</h3>
         <p>Oficial de préstamos hipotecarios (Loan Officer). Aprobaciones rápidas y programas para primeros compradores.</p>
       </div>
-
       <div class="service-card">
-        <div class="service-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-        </div>
+        <div class="service-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
         <h3>Reparación de Crédito</h3>
         <p>Asesoría especializada para arreglar su crédito enfocado exclusivamente en la compra de su casa.</p>
       </div>
-
       <div class="service-card">
-        <div class="service-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
+        <div class="service-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
         <h3>Reubicación</h3>
         <p>Especialistas en clientes de California y México que buscan la seguridad y economía de Texas y Florida.</p>
       </div>
@@ -411,29 +337,15 @@
           <p>&ldquo;Simplificar el proceso y dar el mejor servicio posible negociando para obtener mejores resultados.&rdquo;</p>
         </div>
       </div>
-
       <div class="about-copy">
         <p class="eyebrow-plain">Sobre Bouton Real Estate</p>
         <h2>Más que agentes, somos <span class="accent">su familia</span> en bienes raíces.</h2>
         <p>Con más de 20 años de experiencia, Angelo Bouton ha ayudado a innumerables familias a encontrar su hogar. Nos diferenciamos por ofrecer un servicio personalizado donde actuamos como <strong>Realtor y Oficial de Préstamos</strong> simultáneamente.</p>
-
         <div class="about-features">
-          <div class="about-feature">
-            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-            <div><h4>Servicio 2 en 1</h4><p>Atención de Realtor y Loan Officer al mismo tiempo. No necesita buscar financiamiento por separado.</p></div>
-          </div>
-          <div class="about-feature">
-            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-            <div><h4>Disponibilidad 24/7</h4><p>Trabajamos sin limitaciones de horario. Atendemos noches, sábados, domingos y festivos.</p></div>
-          </div>
-          <div class="about-feature">
-            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-            <div><h4>Resultados Rápidos</h4><p>Resultados y aprobaciones para compra de casa a veces en cuestión de minutos.</p></div>
-          </div>
-          <div class="about-feature">
-            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-            <div><h4>Trato Familiar</h4><p>Honestidad e integridad. Queremos que se sienta como en familia durante todo el proceso.</p></div>
-          </div>
+          <div class="about-feature"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><div><h4>Servicio 2 en 1</h4><p>Atención de Realtor y Loan Officer al mismo tiempo. No necesita buscar financiamiento por separado.</p></div></div>
+          <div class="about-feature"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><div><h4>Disponibilidad 24/7</h4><p>Trabajamos sin limitaciones de horario. Atendemos noches, sábados, domingos y festivos.</p></div></div>
+          <div class="about-feature"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><div><h4>Resultados Rápidos</h4><p>Resultados y aprobaciones para compra de casa a veces en cuestión de minutos.</p></div></div>
+          <div class="about-feature"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><div><h4>Trato Familiar</h4><p>Honestidad e integridad. Queremos que se sienta como en familia durante todo el proceso.</p></div></div>
         </div>
       </div>
     </div>
@@ -450,18 +362,17 @@
       <div>
         <h2>¿Por qué elegir Bouton Real Estate?</h2>
         <p>Entendemos que comprar una casa es una de las decisiones más importantes de su vida. Por eso, eliminamos las barreras tradicionales del mercado.</p>
-
         <div class="why-list">
           <div class="why-item">
-            <div class="why-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div>
+            <div class="why-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div>
             <div><h3>Seguridad y Confianza</h3><p>Texas ofrece índices de crimen muy bajos. Priorizamos la seguridad de su inversión y su familia.</p></div>
           </div>
           <div class="why-item">
-            <div class="why-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="why-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
             <div><h3>Rapidez en Trámites</h3><p>Gestionamos la venta de su casa actual y la compra de la nueva simultáneamente para que nunca se quede sin hogar.</p></div>
           </div>
           <div class="why-item">
-            <div class="why-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/></svg></div>
+            <div class="why-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/></svg></div>
             <div><h3>Apoyo a la Comunidad</h3><p>Programas especiales para primeros compradores y asesoría para la comunidad Hispana.</p></div>
           </div>
         </div>
@@ -469,7 +380,6 @@
 
       <div class="testimonial-card">
         <h3>Testimonios</h3>
-
         <div class="testimonial">
           <div class="stars">
             <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -481,7 +391,6 @@
           <p class="quote">&ldquo;Excelente servicio, nos ayudaron con el préstamo y la casa al mismo tiempo. Muy recomendado para gente que viene de fuera.&rdquo;</p>
           <p class="author">- Familia Rodriguez</p>
         </div>
-
         <div class="testimonial">
           <div class="stars">
             <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -506,7 +415,9 @@
       <p>¿Listo para dar el siguiente paso? Estamos disponibles para ayudarle a comprar, vender o financiar su propiedad.</p>
     </div>
 
-    <div class="contact-card-wrap">
+    <div class="contact-layout">
+
+      <!-- Contact information -->
       <div class="contact-card">
         <div class="contact-blob tr" aria-hidden="true"></div>
         <div class="contact-blob bl" aria-hidden="true"></div>
@@ -519,22 +430,32 @@
         <div class="contact-grid">
           <div class="contact-col">
             <div class="contact-item">
-              <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div class="icon-wrap">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
               <div><p class="label">Dirección</p><p class="value">5220 Spring Valley RD, Dallas TX 75252</p></div>
             </div>
+
             <div class="contact-item">
-              <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-              <div><p class="label">Teléfono</p><a class="value" href="https://wa.me/12147668878">214-766-8878</a></div>
+              <div class="icon-wrap">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div><p class="label">Teléfono</p><a class="value" href="https://wa.me/12147668878" target="_blank" rel="noopener noreferrer">214-766-8878</a></div>
             </div>
           </div>
 
           <div class="contact-col">
             <div class="contact-item">
-              <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+              <div class="icon-wrap">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </div>
               <div><p class="label">Email</p><a class="value" href="mailto:angelobouton@gmail.com" style="word-break:break-all;">angelobouton@gmail.com</a></div>
             </div>
+
             <div class="contact-item">
-              <div class="icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <div class="icon-wrap">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
               <div><p class="label">Horario</p><p class="value">Lunes a Domingo</p><p style="font-size:.85rem;color:var(--gray-400);">7:00 AM - 12:00 AM</p></div>
             </div>
           </div>
@@ -542,6 +463,60 @@
 
         <p class="contact-quote">&ldquo;Atendemos Sábados, Domingos y Festivos.&rdquo;</p>
       </div>
+
+      <!-- Contact form -->
+      <div class="contact-form-card">
+        <div class="contact-form-head">
+          <h3>Solicita Información</h3>
+          <p>Déjanos tus datos y nos pondremos en contacto contigo.</p>
+        </div>
+
+        <form class="contact-form" id="boutonContactForm" action="https://api.web3forms.com/submit" method="POST">
+
+          <!-- Replace this placeholder with the Web3Forms Access Key -->
+          <input type="hidden" name="access_key" value="8626d598-5df9-4521-a60f-10948b6d3071" />
+
+          <input type="hidden" name="subject" value="New Contact Request - Bouton Real Estate" />
+          <input type="hidden" name="from_name" value="Bouton Real Estate Website" />
+          <input type="hidden" name="replyto" value="" id="formReplyTo" />
+
+          <!-- Web3Forms honeypot -->
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+
+          <div class="form-field">
+            <label for="fullName">Full name</label>
+            <input type="text" id="fullName" name="Full Name" placeholder="Your full name" autocomplete="name" required />
+          </div>
+
+          <div class="form-field">
+            <label for="emailAddress">Email address</label>
+            <input type="email" id="emailAddress" name="Email Address" placeholder="you@example.com" autocomplete="email" required />
+          </div>
+
+          <div class="form-field">
+            <label for="phoneNumber">Phone number</label>
+            <input type="tel" id="phoneNumber" name="Phone Number" placeholder="214-555-1234" autocomplete="tel" inputmode="tel" required />
+          </div>
+
+          <div class="form-consent">
+            <input type="checkbox" id="smsConsent" name="SMS Consent" value="I agree to receive text messages from Bouton Real Estate as described in the consent notice." required />
+            <label for="smsConsent">
+              I agree to receive text messages from Bouton Real Estate, including appointment
+              reminders, property updates, marketing messages, and occasional promotional offers.
+              Message frequency varies. Message and data rates may apply. Consent is not a condition
+              of purchasing any goods or services. You can reply STOP at any time to unsubscribe or
+              HELP for assistance at 214-766-8878.
+              By checking this box, I provide my prior express written consent to receive SMS messages from
+              Bouton Real Estate at the phone number provided.
+            </label>
+          </div>
+
+          <button type="submit" class="form-submit" id="formSubmitButton" disabled>Submit</button>
+
+          <div id="formResult" class="form-result" role="alert" aria-live="polite"></div>
+        </form>
+      </div>
+
     </div>
   </div>
 </section>
@@ -554,10 +529,10 @@
         <img class="footer-logo" src="https://lh3.googleusercontent.com/pw/AP1GczOezET3OkAjNAVlvgdtaPfEtKaxo6vGN9CjU4DbOJtVUOjbPD3TGHMa76zuJvHvRwzruqn4kpOpJA9wrovNc-DslpXK5i0bNQ9mCGSMtRrDsPYuNFDtRl3HsKdzN1gjY-SeIvJkhEH1fbOO8m9Yw5xe7Q=w917-h917-s-no-gm?authuser=0" alt="Bouton Real Estate" loading="lazy" />
         <p>Haciendo realidad el sueño de ser dueño de su casa con honestidad, integridad y profesionalismo.</p>
         <div class="social-row">
-          <a href="#" aria-label="Facebook"><svg class="icon" style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-          <a href="#" aria-label="Instagram"><svg class="icon" style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
-          <a href="#" aria-label="LinkedIn"><svg class="icon" style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
-          <a href="#" aria-label="Twitter"><svg class="icon" style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg class="icon" style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg class="icon" style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg class="icon" style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" aria-label="Twitter"><svg class="icon" style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a>
         </div>
       </div>
 
@@ -596,7 +571,7 @@
     <div class="footer-bottom">
       <p>© <span id="year"></span> Bouton Real Estate. Todos los derechos reservados.</p>
       <div class="equal-housing">
-        <svg class="icon" style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <svg class="icon" style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         <span>Equal Housing Opportunity</span>
       </div>
     </div>
@@ -606,33 +581,99 @@
 </footer>
 
 <script>
-  (function(){
-    "use strict";
-    var navbar = document.getElementById("navbar");
-    var menuToggle = document.getElementById("menuToggle");
+(function(){
+  "use strict";
 
-    function onScroll(){
-      if (window.scrollY > 20) navbar.classList.add("is-scrolled");
-      else navbar.classList.remove("is-scrolled");
+  var navbar = document.getElementById("navbar");
+  var menuToggle = document.getElementById("menuToggle");
+
+  function onScroll(){
+    if(window.scrollY > 20) navbar.classList.add("is-scrolled");
+    else navbar.classList.remove("is-scrolled");
+  }
+
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+
+  menuToggle.addEventListener("click", function(){
+    var open = navbar.classList.toggle("menu-open");
+    menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+
+  document.querySelectorAll(".mobile-menu a").forEach(function(link){
+    link.addEventListener("click", function(){
+      navbar.classList.remove("menu-open");
+      menuToggle.setAttribute("aria-expanded","false");
+    });
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* ================= CONTACT FORM ================= */
+
+  var contactForm = document.getElementById("boutonContactForm");
+  var smsConsent = document.getElementById("smsConsent");
+  var submitButton = document.getElementById("formSubmitButton");
+  var formResult = document.getElementById("formResult");
+  var emailAddress = document.getElementById("emailAddress");
+  var formReplyTo = document.getElementById("formReplyTo");
+
+  function updateSubmitButton(){
+    submitButton.disabled = !smsConsent.checked;
+  }
+
+  smsConsent.addEventListener("change", updateSubmitButton);
+
+  contactForm.addEventListener("submit", async function(event){
+    event.preventDefault();
+
+    if(!contactForm.checkValidity()){
+      contactForm.reportValidity();
+      return;
     }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
 
-    menuToggle.addEventListener("click", function(){
-      var open = navbar.classList.toggle("menu-open");
-      menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
-    });
+    if(!smsConsent.checked){
+      return;
+    }
 
-    // Close the mobile menu after tapping any in-menu link.
-    document.querySelectorAll(".mobile-menu a").forEach(function(link){
-      link.addEventListener("click", function(){
-        navbar.classList.remove("menu-open");
-        menuToggle.setAttribute("aria-expanded", "false");
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending...";
+    formResult.className = "form-result";
+    formResult.textContent = "";
+
+    formReplyTo.value = emailAddress.value;
+
+    var formData = new FormData(contactForm);
+
+    try{
+      var response = await fetch("https://api.web3forms.com/submit",{
+        method:"POST",
+        body:formData,
+        headers:{Accept:"application/json"}
       });
-    });
 
-    document.getElementById("year").textContent = new Date().getFullYear();
-  })();
+      var data = await response.json();
+
+      if(response.ok && data.success){
+        formResult.className = "form-result success";
+        formResult.textContent = "Thank you! Your message has been sent successfully.";
+        contactForm.reset();
+      }else{
+        formResult.className = "form-result error";
+        formResult.textContent = data.message || "Something went wrong. Please try again.";
+      }
+    }catch(error){
+      console.error("Web3Forms error:",error);
+      formResult.className = "form-result error";
+      formResult.textContent = "Unable to send your message. Please try again later.";
+    }
+
+    submitButton.textContent = "Submit";
+    updateSubmitButton();
+  });
+
+})();
 </script>
+
 </body>
 </html>
